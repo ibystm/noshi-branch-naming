@@ -10,14 +10,27 @@
 const init = require('./utils/init');
 const cli = require('./utils/cli');
 const log = require('./utils/log');
+const readline = require('readline');
+
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
 
 const input = cli.input;
 const flags = cli.flags;
-const { clear, debug } = flags;
+const { debug } = flags;
 
 (async () => {
-	init({ clear });
 	input.includes(`help`) && cli.showHelp(0);
-
 	debug && log(flags);
+	rl.question('What is your JIRA tiket ID: ', answer => {
+		const jiraId = answer;
+		rl.question('What is your task detail: ', answer => {
+			const yourTaskDetail = answer;
+			rl.close();
+			const commitTemp = `feature/t-kosuke_${jiraId}_${yourTaskDetail}`;
+			console.log(`Your branch name: ${commitTemp}`);
+		});
+	});
 })();
