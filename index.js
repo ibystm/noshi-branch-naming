@@ -22,7 +22,7 @@ const input = cli.input;
 const flags = cli.flags;
 const { debug } = flags;
 
-(async () => {
+const main = async () => {
 	input.includes(`help`) && cli.showHelp(0);
 	debug && log(flags);
 	rl.question('What is your JIRA tiket ID: ', answer => {
@@ -32,8 +32,9 @@ const { debug } = flags;
 			rl.close();
 			const branchNameTemp = `feature/t-kosuke_${jiraId}_${yourTaskDetail}`;
 			console.log(`Your branch name: ${branchNameTemp}`);
-
 			git.checkoutLocalBranch(branchNameTemp);
 		});
 	});
-})();
+};
+
+main();
