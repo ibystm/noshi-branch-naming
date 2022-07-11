@@ -1,0 +1,1 @@
+# noshi-branch-naming
