@@ -13,6 +13,21 @@ const log = require('./utils/log');
 const readline = require('readline');
 const chalk = require('chalk');
 const git = require('simple-git')();
+const fs = require('fs');
+const targetPath = '../.git';
+
+const checkGitDir = () => {
+	try {
+		if (fs.existsSync(targetPath)) {
+			return true;
+		}
+
+		return false;
+	} catch (e) {
+		console.log('Error occured....', e);
+		return false;
+	}
+};
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -26,6 +41,11 @@ const { debug } = flags;
 const main = async () => {
 	input.includes(`help`) && cli.showHelp(0);
 	debug && log(flags);
+	if (!checkGitDir()) {
+		console.log(chalk.red('This directory is not initialized with git'));
+		rl.close();
+		return;
+	}
 	rl.question(chalk.blue('What is your JIRA tiket ID: '), answer => {
 		const jiraId = answer;
 		rl.question(chalk.blue('What is your task detail: '), answer => {
