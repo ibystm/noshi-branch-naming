@@ -14,6 +14,7 @@ const readline = require('readline');
 const chalk = require('chalk');
 const git = require('simple-git')();
 const fs = require('fs');
+const cliHandleError = require('cli-handle-error');
 
 const checkGitDir = () => {
 	try {
@@ -23,7 +24,7 @@ const checkGitDir = () => {
 
 		return false;
 	} catch (e) {
-		console.log('Error occured....', e);
+		cliHandleError('Failed to checking git directory....', e);
 		return false;
 	}
 };
