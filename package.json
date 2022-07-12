@@ -5,7 +5,7 @@
 	"license": "UNLICENSED",
 	"bin": {
 		"noshi-branch-naming": "index.js",
-		"nsh": "index.js"
+		"noshi": "index.js"
 	},
 	"author": {
 		"name": "Kosuke Takahashi",
