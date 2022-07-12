@@ -14,11 +14,10 @@ const readline = require('readline');
 const chalk = require('chalk');
 const git = require('simple-git')();
 const fs = require('fs');
-const targetPath = './.git';
 
 const checkGitDir = () => {
 	try {
-		if (fs.existsSync(targetPath)) {
+		if (fs.existsSync('./.git')) {
 			return true;
 		}
 
