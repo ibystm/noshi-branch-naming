@@ -14,7 +14,7 @@ const readline = require('readline');
 const chalk = require('chalk');
 const git = require('simple-git')();
 const fs = require('fs');
-const targetPath = '../.git';
+const targetPath = './.git';
 
 const checkGitDir = () => {
 	try {
